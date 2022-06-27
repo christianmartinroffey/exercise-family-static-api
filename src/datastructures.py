@@ -6,29 +6,64 @@ update this file to implement the following already declared methods:
 - update_member: Should update a member from the self._members list
 - get_member: Should return a member from the self._members list
 """
+from ast import Delete
+from operator import indexOf
+from pickle import NONE
 from random import randint
+
 
 class FamilyStructure:
     def __init__(self, last_name):
         self.last_name = last_name
-
         # example list of members
-        self._members = []
+        self._members = [
+            {
+                "id": 0,
+                "first_name": "John",
+                "age": 22,
+                "lucky_numbers": "22, 22, 4"
+            },
+
+            {
+                "id": 1,
+                "first_name": "James",
+                "age": 45,
+                "lucky_numbers": "223, 2992, 4"
+            }
+        ]
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):
         return randint(0, 99999999)
 
+    def _generateNumber(self):
+        luckynumbers = []
+        for i in range(0,3):
+            luckynumbers.append(str(randint(0, 99)))
+        return ",".join(luckynumbers)
+            
+
     def add_member(self, member):
-        # fill this method and update the return
+        self._members.append(member)
         pass
 
     def delete_member(self, id):
-        # fill this method and update the return
+        
+        # for index, individual in self._members:
+        #     if individual.id == id:
+        #         return self._members.pop(index)
+
+        deleteTheMember = filter(lambda i: i.id != id, self._members)
+        self._members = deleteTheMember
+        return 
         pass
 
     def get_member(self, id):
-        # fill this method and update the return
+        getTheMember = filter(lambda i: i.id == id, self._members)
+        try:   
+            return getTheMember[0],
+        except IndexError: 
+            return None
         pass
 
     # this method is done, it returns a list with all the family members
