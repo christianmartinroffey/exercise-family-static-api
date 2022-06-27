@@ -20,17 +20,25 @@ class FamilyStructure:
             {
                 "id": 0,
                 "first_name": "John",
-                "age": 22,
-                "lucky_numbers": "22, 22, 4"
+                "age": 33,
+                "lucky_numbers": "7, 13, 22"
             },
 
             {
                 "id": 1,
-                "first_name": "James",
-                "age": 45,
-                "lucky_numbers": "223, 2992, 4"
+                "first_name": "Jane",
+                "age": 35,
+                "lucky_numbers": "10, 14, 3"
+            },
+
+             {
+                "id": 2,
+                "first_name": "Jimmy",
+                "age": 5,
+                "lucky_numbers": "1"
             }
         ]
+
 
     # read-only: Use this method to generate random members ID's when adding members into the list
     def _generateId(self):

@@ -48,13 +48,13 @@ def handle_post():
     return jsonify(member), 200
 
 #post to add a new member
-@app.route('/members', methods=['POST'])
-def handle_post():
 
-    # this is how you can use the Family datastructure by calling its methods
+@app.route('/members', methods=['POST'])
+def _generateId():
+def _generateNumber():
+####### age and first name 
     members = jackson_family.get_all_members()
     response_body = {
-        "hello": "world",
         "family": members
     }
 
