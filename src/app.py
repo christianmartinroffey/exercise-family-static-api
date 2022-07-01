@@ -34,6 +34,8 @@ def get_all_members():
     response_body = {
         "family": members
     }
+    if members is None:
+        return "Something went wrong", 404
 
     return jsonify(response_body), 200
 
@@ -64,11 +66,13 @@ def add_member():
         "lucky_numbers" : jackson_family._generateNumber(),
     }
     jackson_family.add_member(newmember)
+
+    
     return jsonify({}),200
 
 # delete functionality goes here (NOT DONE YET)
 
-#GET to retrieve one family member (DONE)
+#DELETE to remove one family member (DONE)
 @app.route('/members/<int:member_id>', methods=['DELETE'])
 def delete_member(id):
     
