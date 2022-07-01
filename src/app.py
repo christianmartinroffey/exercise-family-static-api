@@ -38,7 +38,7 @@ def handle_hello():
 
 #GET to retrieve one family member
 @app.route('/members/<int:member_id>', methods=['GET'])
-def handle_post():
+def get_all_members(id):
 
     # this is how you can use the Family datastructure by calling its methods
     member = jackson_family.get_member(member_id)
@@ -50,14 +50,16 @@ def handle_post():
 #post to add a new member
 
 @app.route('/members', methods=['POST'])
-def _generateId():
-def _generateNumber():
+def add_member():
+    id =
 ####### age and first name 
     members = jackson_family.get_all_members()
     response_body = {
         "family": members
     }
 
+def _generateId():
+def _generateNumber():
 
     return jsonify(response_body), 200
 

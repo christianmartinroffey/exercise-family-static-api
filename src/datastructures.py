@@ -44,18 +44,20 @@ class FamilyStructure:
     def _generateId(self):
         return randint(0, 99999999)
 
+# add 3 random 'lucky' numbers
     def _generateNumber(self):
         luckynumbers = []
         for i in range(0,3):
             luckynumbers.append(str(randint(0, 99)))
         return ",".join(luckynumbers)
             
-
+# add a new member to the family
     def add_member(self, member):
         self._members.append(member)
         return self._members
         pass
 
+# delete a member from the family
     def delete_member(self, id):
         
         # for index, individual in self._members:
@@ -67,6 +69,7 @@ class FamilyStructure:
         return 
         pass
 
+# retrieve individual member based on their id
     def get_member(self, id):
         getTheMember = filter(lambda i: i.id == id, self._members)
         try:   
