@@ -53,26 +53,34 @@ def get_member(id):
 #post to add a new member to the family (DONE)
 @app.route('/members', methods=['POST'])
 def add_member():
-    id = jackson_family.get_member(id)
-    first_name = jackson_family.get_member("first_name")
-    last_name = jackson_family.get_member('last_name')
-    age = jackson_family.get_member("age")
-    lucky_numbers = jackson_family.get_member("lucky_numbers")
-    newmember= {
-        "id": jackson_family._generateId(),
+    id = jackson_family._generateId()
+    first_name = request.json.get("first_name", None)
+    last_name = request.json.get("last_name", None)
+    age = request.json.get("age", None)
+    lucky_numbers = jackson_family._generateNumber()
+
+    newMember= { 
         "first_name": first_name,
         "last_name" : last_name,
         "age" : age,
-        "lucky_numbers" : jackson_family._generateNumber(),
+        "lucky_numbers" : lucky_numbers,
     }
-    jackson_family.add_member(newmember)
+
+    newMember = jackson_family(email=email,  firstName=firstName, lastName = lastName, id=id, lucky_numbers=lucky_numbers )        
+    
+    try: 
+        db.session.add(newMember)        
+        db.session.commit()
 
     
-    return jsonify({}),200
+        return jsonify({}),200
+    except Exception as err:
+        print(str(err))
+        return jsonify({'message': str(err)}), 500
 
-# delete functionality goes here (NOT DONE YET)
 
 #DELETE to remove one family member (DONE)
+
 @app.route('/members/<int:member_id>', methods=['DELETE'])
 def delete_member(id):
     
