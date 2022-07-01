@@ -25,8 +25,9 @@ def handle_invalid_usage(error):
 def sitemap():
     return generate_sitemap(app)
 
+# get all of the family (DONE)
 @app.route('/members', methods=['GET'])
-def handle_hello():
+def get_all_members():
 
     # this is how you can use the Family datastructure by calling its methods
     members = jackson_family.get_all_members()
@@ -36,33 +37,48 @@ def handle_hello():
 
     return jsonify(response_body), 200
 
-#GET to retrieve one family member
+#GET to retrieve one family member (DONE)
 @app.route('/members/<int:member_id>', methods=['GET'])
-def get_all_members(id):
+def get_member(id):
 
     # this is how you can use the Family datastructure by calling its methods
-    member = jackson_family.get_member(member_id)
+    member = jackson_family.get_member(id)
     if member is None:
         return "There are no people that id", 404
 
     return jsonify(member), 200
 
-#post to add a new member
-
+#post to add a new member to the family (DONE)
 @app.route('/members', methods=['POST'])
 def add_member():
-    id =
-####### age and first name 
-    members = jackson_family.get_all_members()
-    response_body = {
-        "family": members
+    id = jackson_family.get_member(id)
+    first_name = jackson_family.get_member("first_name")
+    last_name = jackson_family.get_member('last_name')
+    age = jackson_family.get_member("age")
+    lucky_numbers = jackson_family.get_member("lucky_numbers")
+    newmember= {
+        "id": jackson_family._generateId(),
+        "first_name": first_name,
+        "last_name" : last_name,
+        "age" : age,
+        "lucky_numbers" : jackson_family._generateNumber(),
     }
+    jackson_family.add_member(newmember)
+    return jsonify({}),200
 
-def _generateId():
-def _generateNumber():
+# delete functionality goes here (NOT DONE YET)
 
-    return jsonify(response_body), 200
+#GET to retrieve one family member (DONE)
+@app.route('/members/<int:member_id>', methods=['DELETE'])
+def delete_member(id):
+    
+    member = jackson_family.delete_member(id)
+    if member is None:
+        return "There are no people that id", 404
 
+    return jsonify({"member has been deleted"}), 200
+
+# -------
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))

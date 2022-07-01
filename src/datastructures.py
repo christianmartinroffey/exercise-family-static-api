@@ -35,7 +35,7 @@ class FamilyStructure:
                 "id": self._generateId(),
                 "first_name": "Jimmy",
                 "age": 5,
-                "lucky_numbers": "1"
+                "lucky_numbers": "1, 2, 3"
             }
         ]
 
