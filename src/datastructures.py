@@ -18,21 +18,21 @@ class FamilyStructure:
         # example list of members
         self._members = [
             {
-                "id": 0,
+                "id": self._generateId(),
                 "first_name": "John",
                 "age": 33,
                 "lucky_numbers": "7, 13, 22"
             },
 
             {
-                "id": 1,
+                "id": self._generateId(),
                 "first_name": "Jane",
                 "age": 35,
                 "lucky_numbers": "10, 14, 3"
             },
 
              {
-                "id": 2,
+                "id": self._generateId(),
                 "first_name": "Jimmy",
                 "age": 5,
                 "lucky_numbers": "1"
@@ -53,6 +53,7 @@ class FamilyStructure:
 
     def add_member(self, member):
         self._members.append(member)
+        return self._members
         pass
 
     def delete_member(self, id):
