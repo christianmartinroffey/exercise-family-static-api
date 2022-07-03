@@ -66,7 +66,7 @@ def add_member():
         "lucky_numbers" : lucky_numbers,
     }
 
-    newMember = jackson_family(email=email,  firstName=firstName, lastName = lastName, id=id, lucky_numbers=lucky_numbers )        
+    newMember = jackson_family(email=email,  first_name=first_name, last_name = last_name, id=id, lucky_numbers=lucky_numbers )        
     
     try: 
         db.session.add(newMember)        
